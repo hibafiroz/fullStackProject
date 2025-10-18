@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="h-screen bg-gradient-to-br from-purple-900 via-black to-purple-900 font-sans relative">
+
+  <!-- Demo Admin Credentials in top-left corner -->
+  <div class="absolute top-4 left-4">
+    <div class="bg-gray-800 p-4 rounded-lg shadow-md">
+      <h3 class="text-lg font-semibold text-purple-300 mb-2">Demo Admin Credentials</h3>
+      <p class="text-sm text-gray-300">Username: <span id="demoUser">HibaFiroz</span></p>
+      <p class="text-sm text-gray-300">Password: <span id="demoPass">123456</span></p>
+    </div>
+  </div>
+   <form action="/student/login" id="form" method="post" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-900 p-10 rounded-2xl shadow-2xl w-96 flex flex-col space-y-6">
+    <h2 class="text-3xl font-bold text-purple-400 text-center mb-4">Student Login</h2>
+    <div class="flex flex-col">
+      <label for="username" class="text-gray-300 mb-1">Username</label>
+      <input type="text" name="username" id="username" placeholder="Enter your username" class="px-4 py-2 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+      <p id="usernameFeedback" class="text-red-500"></p>
+    </div>
+
+    <div class="flex flex-col">
+      <label for="password" class="text-gray-300 mb-1">Password</label>
+      <input type="password" name="password" id="password" autocomplete="new-password" placeholder="Enter your password" class="px-4 py-2 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+      <p id="passwordFeedback" class="text-red-500"></p>
+    </div>
+
+    <button type="submit" class="bg-purple-700 text-white font-semibold py-2 rounded-lg hover:bg-purple-900 transition duration-700 shadow-md">
+      Login
+    </button>
+    <p id="feedback" class="text-red-500"></p>
+  </form>
+
+<script>
+const username = document.getElementById('username')
+const usernameFeedback = document.getElementById('usernameFeedback')
+const password = document.getElementById('password')
+const passwordFeedback = document.getElementById('passwordFeedback')
+const feedback = document.getElementById('feedback')
+const form = document.getElementById('form')
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault()
+
+  // clear old feedback messages
+  usernameFeedback.textContent = ''
+  passwordFeedback.textContent = ''
+  feedback.textContent = ''
+
+  const usernamePattern = /^[A-Za-z ]+$/
+  const passwordPattern = /^\d{6,}$/
+  let isValid = true
+
+  if (!username.value && !password.value) {
+    feedback.textContent = 'Please fill the form'
+    isValid = false
+    return
+  }
+
+  if (!usernamePattern.test(username.value)) {
+    usernameFeedback.textContent = 'Username can only have letters and spaces'
+    username.classList.add('border-red-500')
+    isValid = false
+  }
+
+  if (!passwordPattern.test(password.value)) {
+    passwordFeedback.textContent = 'Password should be at least 6 digits'
+    password.classList.add('border-red-500')
+    isValid = false
+  } 
+
+  if (isValid) {
+    form.submit()
+  }
+})
+</script>
+  <footer class="absolute bottom-4 text-gray-400 text-sm">
+  © 2025 School Portal | Built by Hiba
+</footer>
+</body>
+</html>

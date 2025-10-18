@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Student</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-purple-300 min-h-screen flex items-center gap-2 justify-center">
+    <form action="/student/editStudent2" method="POST" id="form" class="bg-gray-900 p-6 rounded shadow-md w-96">
+        <h1 class="text-2xl mb-4 text-purple-700 font-bold text-center">EDIT STUDENT</h1>
+
+        <div class="flex flex-col mb-4">
+        <input type="text" id="username" name="username" placeholder="Name" value="<%= student.username %>" class="w-full p-2 rounded bg-gray-800 text-white">
+        <p id="usernameFeedback" class="text-red-500 text-sm hidden"></p>
+        </div>
+
+        <div class="flex flex-col mb-4">
+        <input type="number" id="age" name="age" placeholder="Age" value="<%= student.age %>" class="w-full p-2 rounded bg-gray-800 text-white">
+        <p id="ageFeedback" class="text-red-500 text-sm hidden"></p>
+        </div>
+
+        <div class="flex flex-col mb-4">
+        <input type="email" id="email" name="email" placeholder="Email" value="<%= student.email%>" class="w-full p-2 rounded bg-gray-800 text-white">
+        <p id="emailFeedback" class="text-red-500 text-sm hidden"></p>
+        </div>
+
+        <div class="flex flex-col mb-4">
+        <input type="text" id="course" name="course" placeholder="Course" value="<%= student.course %>" class="w-full p-2 mb-2 rounded bg-gray-800 text-white">
+        <p id="courseFeedback" class="text-red-500 text-sm hidden"></p>
+        </div>
+
+        <button class="bg-purple-700 text-white hover:bg-purple-500 px-4 py-2 rounded w-full">Update Student</button>
+        <p id="feedback" class="text-red-500 text-sm"></p>
+    </form>
+
+    <script>
+        const form=document.getElementById('form')
+        const username=document.getElementById('username')
+        const usernameFeedback=document.getElementById('usernameFeedback')
+        const age=document.getElementById('age')
+        const ageFeedback=document.getElementById('ageFeedback')
+        const email=document.getElementById('email')
+        const emailFeedback=document.getElementById('emailFeedback')
+        const course=document.getElementById('course')
+        const courseFeedback=document.getElementById('courseFeedback')
+        const feedback=document.getElementById('feedback')
+        
+        form.addEventListener('submit',(e)=>{
+
+        usernameFeedback.textContent=''
+        ageFeedback.textContent=''
+        emailFeedback.textContent=''
+        courseFeedback.textContent=''
+        feedback.textContent=''
+
+        const usernamePattern=/^[A-Za-z ]+$/
+        const agePattern=/^[1-4][0-9]$/
+        const emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/  
+        const coursePattern=/^[A-Za-z ]+$/
+
+        let isValid=true
+        
+        if(!username.value && !age.value && !email.value && !course.value){
+            e.preventDefault()
+            feedback.textContent='Please fill out the form'
+            feedback.classList.remove('hidden')
+            isValid=false
+            return
+        }
+        if(!username.value || !usernamePattern.test(username.value)){
+            e.preventDefault()
+            usernameFeedback.textContent='Username should contain only Alphabets'
+            usernameFeedback.classList.remove('hidden')
+            isValid=false
+        }
+        if(!age.value || !agePattern.test(age.value)){
+            e.preventDefault()
+            ageFeedback.textContent='Please enter valid age'
+            ageFeedback.classList.remove('hidden')
+            isValid=false
+        }
+        if(!email.value || !emailPattern.test(email.value)){
+            e.preventDefault()
+            emailFeedback.textContent='Enter valid email'
+            emailFeedback.classList.remove('hidden')
+            isValid=false
+        }
+        if(!course.value || !coursePattern.test(course.value)){
+            e.preventDefault()
+            courseFeedback.textContent='Please enter your course'
+            courseFeedback.classList.remove('hidden')
+            isValid=false
+        }
+        })
+    </script>
+</body>
+</html>

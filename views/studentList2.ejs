@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Students List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black via-black to-purple-950 p-8">
+    <h1 class="text-4xl mb-6 text-center text-purple-700 font-bold">STUDENT LIST</h1>
+    <a href="/admin/studentList2/addStudent" class="bg-purple-700 hover:bg-purple-900 px-4 py-2 rounded mb-4 transition duration-700 inline-block">Add Student</a>
+    <table class="table-auto w-full text-left text-purple-300 border border-purple-500">
+        <thead>
+            <tr class="border-b border-purple-500">
+                <th class="px-4 py-2">ID</th>
+                <th class="px-4 py-2">Name</th>
+                <th class="px-4 py-2">Age</th>
+                <th class="px-4 py-2">Email</th>
+                <th class="px-4 py-2">Course</th>
+                <th class="px-4 py-2">Role</th>
+                <th class="px-4 py-2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%students.forEach(student=>{%>
+            <tr class="border-b border-purple-500">
+                <td class="px-4 py-2"><%=student.id%></td>
+                <td class="px-4 py-2"><%=student.username%></td>
+                <td class="px-4 py-2"><%=student.age%></td>
+                <td class="px-4 py-2"><%=student.email%></td>
+                <td class="px-4 py-2"><%=student.course%></td>
+                <td class="px-4 py-2"><%=student.role%></td>
+                <td class="px-4 py-2">
+                    <a href="/admin/studentList2/editStudent/<%=student.id %>" class="bg-purple-700 hover:bg-purple-900 transition duration-700 px-2 py-1 rounded">Edit</a>
+                    <form action="/admin/studentList2/deleteStudent/<%=student.id%>" method="POST" class="inline">
+                        <button class="bg-red-600 hover:bg-red-900 px-2 py-1 rounded transition duration-700">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table><br><br>
+<div class="text-center mt-4">
+  <a href="/admin/profile2" class="text-purple-300 hover:text-purple-500 transition duration-300">Go Back</a>
+</div></body>
+</html>

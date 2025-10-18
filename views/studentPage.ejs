@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-black via-purple-950 to-black text-white min-h-screen flex flex-col items-center p-6">
+  
+  <a href="/student/profile" class="text-red-400 hover:text-purple-300 self-start mb-4">Go Back</a>
+  <h1 class="text-3xl font-bold text-purple-400 mb-4">BULLETINS</h1>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full max-w-5xl">
+  <% files.forEach((val) => { %>
+    <% if (val.filename) { %>
+      <div class="bg-gray-900/90 rounded-xl shadow-lg border border-purple-700 overflow-hidden hover:scale-105 hover:shadow-purple-600/40 transition transform duration-300">
+        
+        <% const ext = val.filename.split('.').pop().toLowerCase(); %>
+
+        <% if(['jpg','jpeg','png','gif','webp'].includes(ext)) { %>
+          <!-- Image Preview -->
+          <img src="/uploads/<%= val.filename %>" 
+               alt="File" 
+               class="w-full h-40 object-cover rounded-t-xl cursor-pointer"
+               onclick="openModal('/uploads/<%= val.filename %>')"
+               onerror="this.remove()">
+        <% } else { %>
+          <!-- Non-image file placeholder -->
+          <div class="w-full h-40 flex items-center justify-center bg-gray-800 text-gray-400 rounded-t-xl">
+            <span>No Preview</span>
+          </div>
+        <% } %>
+
+        <div class="p-4">
+          <p class="text-xs text-gray-400 mb-2 italic">Uploaded on <%= val.uploadTime || 'Unknown' %></p>
+          <button onclick="openModal('/uploads/<%= val.filename %>')" 
+                  class="inline-block px-3 py-1.5 text-sm bg-purple-900 rounded-lg font-medium shadow-md hover:from-purple-700 hover:to-pink-600 transition">
+            View File
+          </button>
+        </div>
+      </div>
+    <% } %>
+  <% }) %>
+</div>
+
+  <!-- Modal -->
+  <div id="fileModal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50 p-4">
+    <div id="modalWrapper" class="bg-gray-900 rounded-lg relative max-w-full max-h-full overflow-auto p-2">
+      <button onclick="closeModal()" class="absolute top-2 right-2 bg-red-500 hover:bg-red-800 text-white text-3xl font-bold">&times;</button>
+      <div id="modalContentWrapper" class="flex items-center justify-center">
+        <!-- Content will be added dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openModal(fileUrl) {
+      const wrapper = document.getElementById('modalContentWrapper');
+      wrapper.innerHTML = ''; // clear previous content
+
+      if (!fileUrl) {
+        const p = document.createElement('p');
+        p.textContent = 'File not found';
+        p.className = 'text-white text-lg';
+        wrapper.appendChild(p);
+        showModal();
+        return;
+      }
+
+      const extension = fileUrl.split('.').pop().toLowerCase();
+      let element;
+
+      if(['jpg','jpeg','png','gif','webp'].includes(extension)) {
+        element = document.createElement('img');
+        element.src = fileUrl;
+        element.style.maxWidth = '90vw';
+        element.style.maxHeight = '90vh';
+        element.style.objectFit = 'contain';
+        element.className = 'rounded';
+        element.onerror = () => {
+          element.src = 'https://via.placeholder.com/600x400?text=Cannot+Preview';
+        }
+      } else if(['pdf'].includes(extension)) {
+        element = document.createElement('iframe');
+        element.src = fileUrl;
+        element.style.width = '90vw';
+        element.style.height = '90vh';
+        element.style.border = 'none';
+        element.className = 'rounded';
+      } else {
+        element = document.createElement('p');
+        element.textContent = 'Cannot preview this file type.';
+        element.className = 'text-white text-lg';
+      }
+
+      wrapper.appendChild(element);
+      showModal();
+    }
+
+    function showModal() {
+      const modal = document.getElementById('fileModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('fileModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.getElementById('modalContentWrapper').innerHTML = '';
+    }
+  </script>
+
+</body>
+</html>

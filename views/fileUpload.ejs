@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-purple-900 via-black to-purple-900 text-white min-h-screen flex items-center justify-center">
+<div class="bg-gray-900/80 shadow-2xl backdrop-blur-md rounded-xl p-12 py-8 w-full max-w-2xl border border-purple-700">
+    <h1 class="text-3xl font-bold text-center text-purple-400 mb-6">UPLOAD BULLETIN</h1>
+    <form action="/admin/fileUpload" method="POST" enctype="multipart/form-data" class="space-y-6">
+      <div>
+        <label class="block text-sm font-medium mb-2 text-purple-200">Choose File</label>
+        <input type="file" name="file" required class="block w-full text-sm text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-800 cursor-pointer"/>
+      </div>
+      <button type="submit" class="w-full bg-purple-600 hover:bg-purple-900 text-white font-semibold py-2 px-4 rounded-lg transition duration-700"> Upload</button>
+    </form><br>
+    <p id="p" class="text-green-300 font-medium text-center animate-pulse"><%=message%></p><br>
+    <div class="text-center mt-4">
+  <a href="/admin/profile2" class="text-purple-300 hover:text-purple-500 transition duration-300">Go Back</a>
+</div>
+
+  </div>
+</body>
+</html>

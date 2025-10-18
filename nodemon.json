@@ -1,0 +1,4 @@
+{
+  "watch": ["app.js", "Routes", "Controller"],
+  "ignore": ["data/*", "public/*", "uploads/*"]
+}

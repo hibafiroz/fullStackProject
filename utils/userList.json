@@ -1,0 +1,52 @@
+[
+  {
+    "id": 224,
+    "username": "Meharin",
+    "password": "123456",
+    "age": "25",
+    "email": "meharin01@gmail.com",
+    "course": "BA English",
+    "role": "student",
+    "photo": "1759503427205.jpg"
+  },
+  {
+    "id": 422,
+    "username": "Eeman",
+    "password": "123456",
+    "age": "77",
+    "email": "eeman@gmail.com",
+    "role": "admin",
+    "course": "XXX",
+    "photo": null
+  },
+  {
+    "id": 91,
+    "username": "Marseena",
+    "password": "123456",
+    "age": "30",
+    "email": "marseena@gmail.com",
+    "role": "student",
+    "course": "BA English",
+    "photo": "1759983154051.jpg"
+  },
+  {
+    "id": 656,
+    "username": "Shahanas Shanu",
+    "password": "123456",
+    "age": "30",
+    "email": "shahanas@gmail.com",
+    "role": "student",
+    "course": "Bachelor of Dental Surgery",
+    "photo": "1759983190641.jpg"
+  },
+  {
+    "id": 696,
+    "username": "HibaFiroz",
+    "password": "123456",
+    "age": "22",
+    "email": "hiba@gmail.com",
+    "role": "student",
+    "course": "Bachelor of Computer Science",
+    "photo": "1760177147691.jpg"
+  }
+]

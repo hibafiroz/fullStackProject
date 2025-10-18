@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Portal</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gradient-to-br from-black via-purple-950 to-black">
+  
+    <div class="text-center flex md:flex-row flex-col gap-2 items-center justify-center h-screen">
+    <div><img src="/photos/<%= photo %>" alt="Student Photo" class="w-64 h-64 rounded-full shadow-xl object-cover border-4 border-white">
+      <a href="/student/logout" class="mt-4 inline-block text-sm text-gray-400 hover:text-red-500 transition duration-300">🔒 Logout</a>
+</div>
+ <div class="text-left ml-9">
+
+    <h2 class="text-3xl font-bold text-gray-200 mb-2"><%=username%></h2>
+    <p class="text-white mb-1">Age: <%=age%></p>
+    <p class="text-white mb-1">Course: <%=course%></p>
+    <p class="text-white mb-1">Email: <%=email%></p>
+    <p class="text-white mb-4">Role: <%=role%></p>
+    <p class="text-white mb-4">ID: <%=id%></p>
+
+    <a href="/student/studentPage" class="bg-purple-800 text-white px-4 py-2 inline-block mr-2 mb-2 rounded hover:bg-purple-950 transition duration-700">View Bulletins</a>
+    <a href="/student/studentList" class="bg-purple-800 text-white px-4 py-2 inline-block mr-2 mb-2 rounded hover:bg-purple-950 transition duration-700">Student Directory</a>
+    <a href="/student/groupList" class="bg-purple-800 text-white px-4 py-2 inline-block mr-2 mb-2 rounded hover:bg-purple-950 transition duration-700">Communities</a>   
+  </div>
+</div>
+</body>
+</html>

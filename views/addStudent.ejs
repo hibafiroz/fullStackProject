@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Add Student</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-black text-purple-300 min-h-screen flex items-center gap-2 justify-center">
+  <form action="/admin/studentList2/addStudent" id="form" enctype="multipart/form-data" method="POST"
+    class="bg-gray-900 p-6 rounded shadow-md w-96">
+    <h1 class="text-3xl mb-4 text-center font-bold">ADD STUDENT</h1>
+
+    <div class="relative mb-4">
+      <input type="text" id="username" name="username" placeholder="Name" class="w-full p-2 mb-3 rounded bg-gray-800" />
+      <p id="usernameFeedback" class="hidden text-sm text-red-500 absolute bottom-0"></p>
+    </div>
+
+    <div class="relative mb-4">
+      <input type="number" id="age" name="age" placeholder="Age" class="w-full p-2 rounded mb-3 bg-gray-800" />
+      <p id="ageFeedback" class="hidden text-sm text-red-500 absolute bottom-0 text-sm"></p>
+    </div>
+
+    <div class="relative mb-3">
+      <input type="email" id="email" name="email" placeholder="Email" class="w-full p-2 mb-3 rounded bg-gray-800" />
+      <p id="emailFeedback" class="hidden text-sm text-red-500 absolute bottom-0"></p>
+    </div>
+
+    <div class="relative mb-4">
+      <input type="text" id="course" name="course" placeholder="Course" class="w-full p-2 mb-3 rounded bg-gray-800" />
+      <p id="courseFeedback" class="hidden text-sm text-red-500 absolute bottom-0"></p>
+    </div>
+
+    <div class="relative mb-4">
+      <input type="text" id="role" name="role" placeholder="Role" class="w-full p-2 mb-3 rounded bg-gray-800" />
+      <p id="roleFeedback" class="hidden text-sm text-red-500 absolute bottom-0"></p>
+    </div>
+
+    <div class="relative mb-4">
+      <label class="block text-gray-400 mb-2">Upload Photo</label>
+      <input type="file" id="upload" name="photo" class="text-gray-200">
+       <p id="uploadFeedback" class="hidden text-sm text-red-500 mt-1"></p>
+    </div>
+
+    <p id="feedback" class="text-red-500 hidden"></p>
+
+    <button type="submit" class="bg-purple-700 text-white hover:bg-purple-500 px-4 py-2 rounded w-full">
+      Add Student
+    </button>
+
+  </form>
+  <script>
+    const username = document.getElementById("username");
+    const usernameFeedback = document.getElementById("usernameFeedback");
+    const age = document.getElementById("age");
+    const ageFeedback = document.getElementById("ageFeedback");
+    const email = document.getElementById("email");
+    const emailFeedback = document.getElementById("emailFeedback");
+    const course = document.getElementById("course");
+    const courseFeedback = document.getElementById("courseFeedback");
+    const role = document.getElementById("role");
+    const roleFeedback = document.getElementById("roleFeedback")
+    const upload=document.getElementById('upload')
+    const uploadFeedback=document.getElementById('uploadFeedback')
+    const feedback = document.getElementById("feedback");
+    const form = document.getElementById("form");
+
+    form.addEventListener("submit", (e) => {
+
+      feedback.textContent = ''
+      usernameFeedback.textContent = ""
+      ageFeedback.textContent = ""
+      emailFeedback.textContent = ""
+      courseFeedback.textContent = ""
+      roleFeedback.textContent=''
+      uploadFeedback.textContent=""
+     
+      if (!username.value && !age.value && !email.value && !course.value && !role.value && !upload.value) {
+        e.preventDefault()
+        feedback.textContent = 'Fill out the form'
+        feedback.classList.remove('hidden')
+        return
+      }
+
+      const usernamePattern = /^[A-Za-z ]+$/;
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const agePattern = /^[1-9][0-9]$/;
+      const coursePattern = /^[A-Za-z ]+$/;
+      const rolePattern = /^[A-Za-z ]+$/;
+
+      let isValid = true
+
+      if (!username.value || !usernamePattern.test(username.value)) {
+        e.preventDefault();
+        usernameFeedback.textContent ="Username can only have letters and spaces";
+        usernameFeedback.classList.remove("hidden");
+        isValid = false
+      }
+
+      if (!email.value || !emailPattern.test(email.value)) {
+        e.preventDefault();
+        emailFeedback.textContent = "Please enter a valid email";
+        emailFeedback.classList.remove("hidden");
+        isValid = false
+      }
+
+      if (!age.value || !agePattern.test(age.value)) {
+        e.preventDefault();
+        ageFeedback.textContent = "Please enter a valid age (10-99)";
+        ageFeedback.classList.remove("hidden");
+        isValid = false;
+      }
+
+      if (!course.value || !coursePattern.test(course.value)) {
+        e.preventDefault();
+        courseFeedback.textContent = "Course can only have letters and spaces";
+        courseFeedback.classList.remove("hidden");
+        isValid = false;
+      }
+
+      if (!role.value || !rolePattern.test(role.value)) {
+        e.preventDefault();
+        roleFeedback.textContent = "Select Your Role";
+        roleFeedback.classList.remove("hidden");
+        isValid = false;
+      }
+
+      if (!upload.value) {
+        e.preventDefault();
+        uploadFeedback.textContent = "Please upload Your Photo";
+        uploadFeedback.classList.remove("hidden");
+        isValid = false;
+      }
+
+
+      if(isValid){
+        form.submit()
+      }
+    })
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Portal</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gradient-to-br from-black via-purple-950 to-black">
+  <div class="text-center flex items-center justify-center h-screen">
+    <div><img src="/photos/eeman.jpg" alt="Student Photo" class="w-64 h-64 rounded-full shadow-lg object-cover border-5 border-white">
+          <a href="/admin/logout" class="mt-4 inline-block text-sm text-gray-400 hover:text-red-500 transition duration-300">🔒 Logout</a>
+    </div>
+ <div class="text-left ml-9">
+    <h2 class="text-3xl font-semibold text-white mb-2"><%=username%></h2>
+    <p class="text-white mb-1">Age: <%=age%></p>
+    <p class="text-white mb-1">Email: <%=email%></p>
+    <p class="text-white mb-1">Role: <%=role%></p>
+    <p class="text-white mb-4">ID: <%=id%></p>
+    <a href="/admin/FileUpload" class="bg-purple-600 text-white px-4 py-2 inline-block mr-2 mb-2 rounded hover:bg-purple-400">Upload Files</a>
+    <a href="/admin/studentList2" class="bg-purple-600 text-white px-4 py-2 inline-block mr-2 mb-2 rounded hover:bg-purple-400">Student List</a>
+  </div>
+</div>
+
+</body>
+</html>
