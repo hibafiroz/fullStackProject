@@ -1,4 +1,14 @@
 {
+  "name": "fullstackproject",
+  "version": "1.0.0",
+  "description": "Full stack Node.js + Express + EJS app",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": "18.x"
+  },
   "dependencies": {
     "cookie-parser": "^1.4.7",
     "dotenv": "^17.2.2",
