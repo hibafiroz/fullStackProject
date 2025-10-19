@@ -6,21 +6,35 @@
     <title>Home</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body class="h-screen bg-gradient-to-r from-black via-purple-950 to-black flex flex-col justify-center items-center font-sans text-white">
-  <h1 class="text-6xl font-bold mb-8 text-purple-600">SCHOOL PORTAL</h1>
+<body class="h-screen bg-gradient-to-r from-black via-purple-950 to-black flex flex-col justify-center items-center font-sans text-white px-4 text-center">
+  
+  <!-- Main Heading -->
+  <h1 class="text-6xl font-bold mb-4 text-purple-600 mb-10">SCHOOL PORTAL</h1>
+  
+  <!-- Subheading -->
+  <h2 class="text-2xl font-semibold mb-4 text-gray-300">Welcome to Our Online School Platform</h2>
+  
+  <!-- Paragraph -->
+  <p class="text-gray-400 max-w-xl mb-8">
+    Access your personalized dashboard, check updates, view uploaded bulletins, and communicate seamlessly with your classmates and groups.
+  </p>
+  
+  <!-- Buttons -->
   <div class="flex space-x-6">
     <a href="/student/login" class="px-6 py-3 bg-white text-purple-600 font-semibold rounded-lg shadow-md hover:bg-purple-950 hover:text-white transition duration-700">Student Page</a>
     <a href="/admin/login" class="px-6 py-3 bg-white text-purple-600 font-semibold rounded-lg shadow-md hover:bg-purple-950 hover:text-white transition duration-700">Admin Page</a>
   </div>
 
+  <!-- Footer -->
   <footer class="absolute bottom-4 text-gray-400 text-sm">
-  © 2025 School Portal | Built by Hiba
-</footer>
-<script>
-  setTimeout(() => {
-    const alert = document.getElementById('logout-alert');
-    if (alert) alert.style.display = 'none';
-  }, 3000); // hide after 3 seconds
-</script>
+    © 2025 School Portal | Built by Hiba
+  </footer>
+
+  <script>
+    setTimeout(() => {
+      const alert = document.getElementById('logout-alert');
+      if (alert) alert.style.display = 'none';
+    }, 3000); // hide after 3 seconds
+  </script>
 </body>
 </html>
